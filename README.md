@@ -26,6 +26,10 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+### Root html
+
+http://server_url:port/index.html
+
 ## Project setup
 
 ```bash

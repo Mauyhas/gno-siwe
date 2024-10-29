@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIWE Connector</title>
+  <style>
+    /* CSS to hide all state divs initially */
+    .state-div {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sign-In with Ethereum (SIWE)</h1>
+
+  <!-- Logged Out State -->
+  <div id="loggedOut" class="state-div">
+    <button id="connect">Connect Wallet</button>
+  </div>
+
+  <!-- Logged In State -->
+  <div id="loggedIn" class="state-div">
+    <button id="logout">Logout</button>
+    <h2>User Profile</h2>
+    <form>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required><br><br>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required><br><br>
+      <label for="bio">Bio:</label>
+      <textarea id="bio" name="bio" rows="4" required></textarea><br><br>
+      <button type="submit">Save Profile</button>
+    </form>
+  </div>
+
+  <!-- Loading State -->
+  <div id="loading" class="state-div">
+    <p>Loading, please wait...</p>
+  </div>
+
+  <script src="/index.js"></script>
+</body>
+</html>
