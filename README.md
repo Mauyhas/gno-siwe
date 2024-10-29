@@ -39,6 +39,9 @@ $ npm install
 ## Compile and run the project
 
 ```bash
+# run redis
+$ docker run --name redis -p 6379:6379 -d redis
+
 # development
 $ npm run start
 

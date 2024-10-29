@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRedis } from '@nestjs-modules/ioredis';
 import Redis from 'ioredis';
+import { KeyValue } from './redis.interface';
 
 @Injectable()
 export class RedisService {
@@ -19,7 +20,14 @@ export class RedisService {
     await this.redis.del(key);
   }
 
-  async getAllKeys(): Promise<string[]> {
-    return await this.redis.keys('*');
+  async getAll<T>(): Promise<KeyValue<T>[]> {
+    const keys = await this.redis.keys('*');
+    const keyValuePairs = await Promise.all(
+      keys.map(async (key) => ({
+        key,
+        value: JSON.parse(await this.redis.get(key)),
+      })),
+    );
+    return keyValuePairs;
   }
 }
