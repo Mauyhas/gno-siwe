@@ -2,9 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRedis } from '@nestjs-modules/ioredis';
 import Redis from 'ioredis';
 import { KeyValue } from './redis.interface';
+import {ICacheService} from './cache.interface'
 
 @Injectable()
-export class RedisService {
+export class RedisService implements ICacheService{
   constructor(@InjectRedis() private readonly redis: Redis) {}
 
   async set<T>(key: string, value: T): Promise<void> {
