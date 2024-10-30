@@ -1,0 +1,23 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack serve"
+  },
+  "dependencies": {
+    "ethers": "^6.13.4",
+    "node-polyfill-webpack-plugin": "^4.0.0",
+    "siwe": "^2.3.2",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "devDependencies": {
+    "bufferutil": "^4.0.8",
+    "html-webpack-plugin": "^5.6.3",
+    "utf-8-validate": "^6.0.4",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
+  }
+}
