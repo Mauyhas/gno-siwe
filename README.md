@@ -61,6 +61,10 @@ $ docker-compose up --build
 #remove redis + app + data
 $ docker-compose down --volumes --remove-orphans
 ```
+
+## Usage example public API
+http://35.238.178.34:3000/
+
 ## Run tests
 
 ```bash

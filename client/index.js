@@ -9,7 +9,7 @@ let isLoading = false;
 let profileId = null;
 
 async function getProfileData(userId) {
-  const url = `http://localhost:3000/user-profile/get?id=${userId}`;
+  const url = `http://35.238.178.34:3000/user-profile/get?id=${userId}`;
 
   try {
     const response = await fetch(url, {
@@ -94,7 +94,7 @@ document.getElementById('profileForm').addEventListener('submit', async (event) 
     try {
       // Send the data to the backend
       //TODO - configure host:port
-      const response = await fetch('http://localhost:3000/user-profile/set', {
+      const response = await fetch('http://35.238.178.34:3000/user-profile/set', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
