@@ -23,8 +23,11 @@
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
-
+Server - used nestjs
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+
+DataBase - Persistence Redis with volume support for quick K/V support
+[Redis](https://redis.io/) KV cache 
 
 ### Root html
 
@@ -50,8 +53,6 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Run tests
-
 ## Usage example local
 ```bash
 #run redis + app
@@ -60,6 +61,8 @@ $ docker-compose up --build
 #remove redis + app + data
 $ docker-compose down --volumes --remove-orphans
 ```
+## Run tests
+
 ```bash
 # unit tests
 $ npm run test
