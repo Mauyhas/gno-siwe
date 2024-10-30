@@ -39,8 +39,6 @@ $ npm install
 ## Compile and run the project
 
 ```bash
-# run redis
-$ docker run --name redis -p 6379:6379 -d redis
 
 # development
 $ npm run start
@@ -55,8 +53,13 @@ $ npm run start:prod
 ## Run tests
 
 ## Usage example local
-TODO
+```bash
+#run redis + app
+$ docker-compose up --build
 
+#remove redis + app + data
+$ docker-compose down --volumes --remove-orphans
+```
 ```bash
 # unit tests
 $ npm run test

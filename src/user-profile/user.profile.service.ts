@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { UserProfile } from './user.profile.interface';
+import { UserProfile, IUserProfileService } from './user.profile.interface';
 import { Logger } from '@nestjs/common';
 import { RedisService } from 'src/redis-cache/redis.service';
 
 @Injectable()
-export class UserProfileService {
+export class UserProfileService implements IUserProfileService {
   private readonly logger = new Logger(UserProfileService.name);
   constructor(private readonly redisService: RedisService) {}
 

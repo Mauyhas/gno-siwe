@@ -5,14 +5,12 @@ import { RedisService } from './redis.service';
 @Module({
   imports: [
     NestRedisModule.forRoot({
-      type: 'single', // Single Redis instance
-      url: 'redis://localhost:6379', // Redis connection URL
-      options: {
-        // Additional Redis options, if needed
-      },
+      type: 'single',
+      url: `redis://${process.env.REDIS_HOST || 'localhost'}:${process.env.REDIS_PORT || 6379}`, // Use environment variables
     }),
   ],
   providers: [RedisService],
   exports: [RedisService],
 })
 export class RedisModule {}
+
