@@ -8,7 +8,10 @@ const provider = new BrowserProvider(window.ethereum);
 const BACKEND_ADDR = "http://localhost:3000";
 
 async function createSiweMessage(address, statement) {
-    const res = await fetch(`${BACKEND_ADDR}/nonce`);
+    const res = await fetch('http://localhost:3000/nonce', {
+        method: 'GET',
+        credentials: 'include', // Ensure session cookies are sent
+      });
     const message = new SiweMessage({
         domain,
         address,
@@ -48,6 +51,7 @@ async function sendForVerification() {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ message, signature }),
+        credentials: 'include'
     });
     console.log(await res.text());
 }

@@ -9,7 +9,8 @@ export class AuthController {
   @Get('nonce')
   getNonce(@Req() req: Request, @Res() res: Response): void {
     const nonce = generateNonce();
-    req.session.nonce = nonce; // Now TypeScript knows `nonce` exists
+    req.session.nonce = nonce;
+    console.log('nonce set', nonce) 
     res.setHeader('Content-Type', 'text/plain');
     res.send(nonce);
   }
@@ -18,10 +19,14 @@ export class AuthController {
   async verify(@Req() req: Request, @Body() body: { message: string; signature: string }, @Res() res: Response): Promise<void> {
     const { message, signature } = body;
     const siweMessage = new SiweMessage(message);
-
+    console.log('siweMessage', siweMessage)
+    console.log('req.session.nonce  ', req.session.nonce  )
+    
     try {
       if (siweMessage.nonce !== req.session.nonce) {
+        console.log('invalide ', siweMessage.nonce)
         throw new HttpException('Invalid nonce', HttpStatus.UNAUTHORIZED);
+        
       }
 
       await siweMessage.verify({ signature });
