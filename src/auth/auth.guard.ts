@@ -13,7 +13,10 @@ export class AuthGuard implements CanActivate {
 
 async function validateRequest(req): Promise<boolean> {
   try {
+    
     const { message, signature } = req.body; // Assuming message and signature are in the request body
+    console.log('msg', message)
+    console.log('sig', signature)
     const siweMessage = new SiweMessage(message);
 
     // Validate the nonce
