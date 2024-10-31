@@ -9,6 +9,7 @@ export class AppController {
 
   @Get('/')
   serveRoot(@Res() res: Response) {
+    //mapping http://HOST:PORT to index
     res.sendFile(join(__dirname, '..', 'client', 'dist/index.html'));
   }
 }
