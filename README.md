@@ -56,6 +56,9 @@ $ npm run start:prod
 ## Usage example local
 ```bash
 #run redis + app
+$ cd client
+$ yarn build
+$ cd..
 $ docker-compose up --build
 
 #remove redis + app + data

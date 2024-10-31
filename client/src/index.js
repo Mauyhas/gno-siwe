@@ -3,7 +3,7 @@ import { SiweMessage } from 'siwe';
 
 const domain = window.location.host;
 const origin = window.location.origin;
-const BACKEND_ADDR = "http://localhost:3000";
+const BACKEND_ADDR = "http://35.238.178.34:3000";
 let provider = new BrowserProvider(window.ethereum);
 let isLoggedIn = false;
 let isLoading = false;
@@ -65,6 +65,7 @@ async function signInWithEthereum() {
 // Show profile form upon successful login
 async function showEditProfileForm(msg) {
   document.getElementById('welcomeMessage').innerText = msg;
+  await fetchProfile()
   loggedInDiv.style.display = 'block';
   loggedOutDiv.style.display = 'none';
   loadingDiv.style.display = 'none';
@@ -80,6 +81,44 @@ async function logout() {
   isLoggedIn = false;
   updateUI();
 }
+
+async function fetchProfile() {
+    const addressProfileIdLocalStorage = localStorage.getItem('addressProfileId')
+    // Ensure the profile ID is provided
+    if (!addressProfileIdLocalStorage) {
+      console.error('Profile ID is missing.');
+      return;
+    }
+  
+    // Define the URL for the GET request with the profile ID as a query parameter
+    const url = `${BACKEND_ADDR}/user-profile/get?id=${addressProfileIdLocalStorage}`;
+  
+    try {
+      // Send a GET request to retrieve the profile
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+  
+      if (response.ok) {
+        // Show "Edit User Profile" section if the profile exists
+        const data = await response.json();
+        setFormData(data);
+        
+      }
+  
+    } catch (error) {
+      console.error('Failed to fetch user profile:', error);
+    }
+  }
+
+  function setFormData(profileData) {
+    document.getElementById('username').value = profileData.username;
+    document.getElementById('bio').value = profileData.bio;
+  }
+  
 
 // Form submission to save profile
 document.getElementById('profileForm').addEventListener('submit', async (event) => {

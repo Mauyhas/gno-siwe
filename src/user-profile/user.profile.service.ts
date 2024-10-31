@@ -14,21 +14,21 @@ export class UserProfileService implements IUserProfileService {
 
   // Create or update a user profile
   async setProfile(userId: string, profileData: Partial<UserProfile>): Promise<UserProfile> {
-    const existingProfile = await this.redisService.get<UserProfile>(this.getKey(userId));
-    this.logger.log(`Existing profile:`, existingProfile)
+    this.logger.log(`SET request for user profile:`, userId)
+    const profileFromDb = await this.redisService.get<UserProfile>(this.getKey(userId));
     const profile = {
-      ...existingProfile,
+      ...profileFromDb,
       id: userId,
       ...profileData,
     };
-    this.logger.log(`New profile:`, existingProfile)
+    this.logger.log(`Updated profile:`, profile)
     await this.redisService.set(this.getKey(userId), profile);
     return profile;
   }
 
   // Retrieve a user profile by ID
   async getProfile(userId: string): Promise<UserProfile | null> {
-    
+    this.logger.log(`GET request for user profile:`, userId)
     return await this.redisService.get<UserProfile>(this.getKey(userId));
   }
 }

@@ -11,7 +11,6 @@ export class UserProfileController {
 
   // Retrieve a user profile by ID
   @Get('get')
-  @UseGuards(AuthGuard)
   async getProfile(@Query('id') id: string): Promise<UserProfile> {
     this.logger.log(`Received request to get profile with ID: ${id}`);
     const profile = await this.userProfileService.getProfile(id);
@@ -26,7 +25,7 @@ export class UserProfileController {
   @Post('set')
   @UseGuards(AuthGuard)
   async setProfile(
-    @Body('profileId') id: string,
+    @Body('addressProfileId') id: string,
     @Body('username') username: string,
     @Body('bio') bio: string,
   ): Promise<UserProfile> {
