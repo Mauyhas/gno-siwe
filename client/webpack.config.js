@@ -5,6 +5,7 @@ const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 module.exports = {
   mode: 'development',
   entry: './src/index.js',
+  target: 'web', // Ensures the bundle is for the browser
   resolve: {
     fallback: {
       net: false,

@@ -36,12 +36,4 @@ export class AuthController {
       res.status(HttpStatus.UNAUTHORIZED).send(false);
     }
   }
-
-  @Get('me')
-  getMe(@Req() req: Request): any {
-    if (req.session.siwe) {
-      return { address: req.session.siwe.address };
-    }
-    throw new HttpException('Not authenticated', HttpStatus.UNAUTHORIZED);
-  }
 }

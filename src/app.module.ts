@@ -11,7 +11,8 @@ import { AuthController } from './auth/auth.controller';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'client'),
+      rootPath: join(process.cwd(), 'client', 'dist'), // Serve files from client/dist
+      serveRoot: '/', // Makes files available at root URL
     }),
     NestRedisModule.forRoot({
       type: 'single',

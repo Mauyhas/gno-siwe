@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Query, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query, NotFoundException, UseGuards } from '@nestjs/common';
 import { UserProfileService } from './user.profile.service';
 import { UserProfile } from './user.profile.interface'
 import { Logger } from '@nestjs/common';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('user-profile')
 export class UserProfileController {
@@ -10,6 +11,7 @@ export class UserProfileController {
 
   // Retrieve a user profile by ID
   @Get('get')
+  @UseGuards(AuthGuard)
   async getProfile(@Query('id') id: string): Promise<UserProfile> {
     this.logger.log(`Received request to get profile with ID: ${id}`);
     const profile = await this.userProfileService.getProfile(id);
@@ -22,6 +24,7 @@ export class UserProfileController {
 
   // Create or update a user profile
   @Post('set')
+  @UseGuards(AuthGuard)
   async setProfile(
     @Body('profileId') id: string,
     @Body('username') username: string,
