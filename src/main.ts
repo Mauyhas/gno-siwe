@@ -14,7 +14,7 @@ async function bootstrap() {
   });
   app.use(
     session({
-      secret: process.env.SESSION_KEY, 
+      secret: 'XYZ123-GYU457-FFF123-KOKOpp55-popo4545', 
       resave: false,
       saveUninitialized: false,
       cookie: { secure: false }, 
